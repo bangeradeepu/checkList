@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 
 const content = ({onLogout,subId,dataAPI}) => {
     const [data,setData] = useState([]);
@@ -47,8 +57,40 @@ const content = ({onLogout,subId,dataAPI}) => {
                 <span onClick={() => handleDelete(checkData._id)}>Delete</span>
             </div>
         ))}
-        <input type="text" value={inputFeild} onChange={(e) => setInputFeild(e.target.value)} />
-        <button onClick={handleInputSubmit}>Submit</button>
+          <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Dessert (100g serving)</TableCell>
+            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((row) => (
+            <TableRow
+              key={row._id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.authId}
+              </TableCell>
+              <TableCell align="right">{row.name}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="left"> <Button variant="contained" size="small"  onClick={() => handleDelete(row._id)}>Delete</Button>
+</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+
+        <br />
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" value={inputFeild} onChange={(e) => setInputFeild(e.target.value)}  />
+        <br />
+        <Button variant="contained" size="large" onClick={handleInputSubmit}>Add</Button>
+        <br />
+        <br />
         <br />
         {subId}
         <button onClick={onLogout}>Logout</button>
