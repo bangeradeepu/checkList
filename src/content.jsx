@@ -77,7 +77,7 @@ const content = ({onLogout,subId,dataAPI}) => {
               </TableCell>
               <TableCell align="right">{row.name}</TableCell>
               <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="left"> <Button variant="contained" size="small"  onClick={() => handleDelete(row._id)}>Delete</Button>
+              <TableCell align="left"> <Button variant="contained" size="small"  onClick={() => handleDelete(row._id)}>Delete malpu</Button>
 </TableCell>
             </TableRow>
           ))}
